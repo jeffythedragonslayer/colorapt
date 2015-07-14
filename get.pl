@@ -37,7 +37,7 @@ $in = 'unknown';
 $| = 1;
 $skip = 0;
 
-$pac = "[a-zA-Z0-9\-:]*";
+$pac = "[a-zA-Z0-9\-:.]*";
 $bytes = "[0-9.,]* [kMG]?B";
 
 while( <> ){
@@ -63,6 +63,7 @@ while( <> ){
 	$thisline =~ s/triggers for ($pac) /triggers for $blue$1 $default/;
 	$thisline =~ s/Package '($pac)'/Package '$red$1$default'/;
 	$thisline =~ s/unselected package ($pac)/unselected package $blue$1$default/;
+	$thisline =~ s/\/s\)$/\/s\)\r/;
 	$thisline =~ s/not upgraded.$/not upgraded.\r/;
 	$thisline =~ s/of archives.$/of archives.\r/;
 	$thisline =~ s/will be used.$/will be used.\r/;
