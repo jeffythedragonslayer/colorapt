@@ -16,10 +16,4 @@ else
 	SIZE=""
 fi
 
-if [ "$1" = "install"    ] ||
-   [ "$1" = "remove"     ] ||
-   [ "$1" = "autoremove" ]; then
-	/usr/bin/apt-get $* -y 2>&1 | ~/colorapt/get.pl $SIZE $*
-else
-	/usr/bin/apt-get $* 2>&1 | ~/colorapt/get.pl $SIZE $*
-fi
+/usr/bin/apt-cache $* 2>&1 | ~/colorapt/cache.pl $*

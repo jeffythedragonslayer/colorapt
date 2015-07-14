@@ -67,7 +67,7 @@ while( <> ){
 	$thisline =~ s/of archives.$/of archives.\r/;
 	$thisline =~ s/will be used.$/will be used.\r/;
 	$thisline =~ s/will be upgraded:/will be upgraded:$blue/;
-	$thisline =~ s/E:/$red$1E:/;
+	$thisline =~ s/^E:/$red$1E:/;
 	$thisline =~ s/Suggested packages:/Suggested packages:$yellow$1/;
 	$thisline =~ s/($bytes)/$green$1$default/g;
 	$thisline =~ s/no longer required:/no longer required:$yellow/;
