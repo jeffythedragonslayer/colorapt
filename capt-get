@@ -1,0 +1,25 @@
+#!/bin/bash
+# Wrapper around apt-get to colorize its output
+#
+# Run with --short as the first argument to shorten each line so it fits
+# on the screen
+
+if [ "$TERM" = "dumb" ]; then
+	exec apt-get "$@"
+fi
+
+# truncated output?
+if [ "$1" = "--short" ]; then
+	SIZE=$(stty size)
+	shift
+else
+	SIZE=""
+fi
+
+if [ "$1" = "install"    ] ||
+   [ "$1" = "remove"     ] ||
+   [ "$1" = "autoremove" ]; then
+	/usr/bin/apt-get $* -y 2>&1 | ~/colorapt/capt-get.pl
+else
+	/usr/bin/apt-get $* 2>&1 | ~/colorapt/capt-get.pl
+fi
