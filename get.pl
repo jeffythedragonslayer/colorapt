@@ -33,7 +33,7 @@ my $skip = 0;
 my $pac = "[a-zA-Z0-9\-:.]*";
 my $bytes = "[0-9.,]* [kMG]?B";
 
-while( <> ){
+while( <STDIN> ){
 	my $orgline = $_;
 
 	s/  \+/ /g; # Remove multiple spaces

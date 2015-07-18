@@ -32,18 +32,16 @@ my $bytes = "[0-9.,]* [kMG]?B";
 my $command = shift @ARGV;
 my $package = shift @ARGV;
 
-while( <> ){
+while( <STDIN> ){
 	my $orgline = $_;
 
 	s/  \+/ /g; # Remove multiple spaces 
 	s/^E:/$red$1E:/; 
 
-	if( $command == "search" ){
-		s/$package/$magenta$package$default/;
-	}
+	if( $command eq"search" ){ s/$package/$magenta$package$default/; }
 
 	if( $_ !~ /^\s+/ ){print $norm, $default;}
-	print $;;
+	print $_;;
 }
 
 print $norm;
