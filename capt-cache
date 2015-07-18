@@ -16,4 +16,5 @@ else
 	SIZE=""
 fi
 
-/usr/bin/apt-cache $* 2>&1 | ~/colorapt/cache.pl $*
+cd ~/colorapt/
+/usr/bin/apt-cache $* 2>&1 | ./cache.pl $*

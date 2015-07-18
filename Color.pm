@@ -4,8 +4,6 @@ package Color;
 use strict;
 use warnings;
 
-#use base qw(Exporter);
-
 use Exporter 'import';
 
 our @ISA = qw(Exporter);

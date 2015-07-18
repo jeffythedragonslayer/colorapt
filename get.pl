@@ -11,8 +11,8 @@ my $blink	= "\033[05m";
 
 # Customize colors here...
 my $default	= $norm;
-my $installed	= $blue;
-my $upgraded    = $blue;
+my $installed	= $green;
+my $upgraded    = $green;
 my $removed	= $red;
 my $error	= $red;
 my $obsolete	= $yellow;
