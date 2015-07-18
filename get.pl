@@ -49,10 +49,10 @@ while( <STDIN> ){
 	s/will be used.$/will be used.\r/;
 	s/will be upgraded:/will be upgraded:$upgraded/;
 	s/^E:/$error\0E:/;
-	s/Suggested packages:/Suggested packages:$suggested$1/;
+	s/Suggested packages:/Suggested packages:$suggested/;
 	s/($bytes)/$bytecol$1$default/g;
 	s/no longer required:/no longer required:$obsolete/;
-	s/apt-get autoremove/$command$1apt-get autoremove$default/;
+	s/apt-get autoremove/$command\0apt-get autoremove$default/;
 
 	if( $_ !~ /^\s+/ ){print $norm, $default}
 	print $_;
