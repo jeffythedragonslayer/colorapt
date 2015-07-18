@@ -32,36 +32,33 @@ my $skip = 0;
 
 my $pac = "[a-zA-Z0-9\-:.]*";
 my $bytes = "[0-9.,]* [kMG]?B";
-my $thisline;
 
 while( <> ){
-	my $orgline = $thisline = $_;
+	my $orgline = $_;
 
-	$thisline =~ s/  \+/ /g; # Remove multiple spaces
-	$thisline =~ s/REMOVED:$/REMOVED:$red/;
-	$thisline =~ s/installed:$/installed:$blue/;
-	$thisline =~ s/^Removing ($pac)/Removing $red$1$default/;
-	$thisline =~ s/^Unpacking ($pac)/Unpacking $blue$1$default/;
-	$thisline =~ s/^Setting up ($pac)/Setting up $blue$1$default/;
-	$thisline =~ s/($pac) is already/$blue$1$default is already/;
-	$thisline =~ s/triggers for ($pac) /triggers for $blue$1 $default/;
-	$thisline =~ s/Package '($pac)'/Package '$red$1$default'/;
-	$thisline =~ s/unselected package ($pac)/unselected package $blue$1$default/;
-	$thisline =~ s/\/s\)$/\/s\)\r/;
-	$thisline =~ s/not upgraded.$/not upgraded.\r/;
-	$thisline =~ s/of archives.$/of archives.\r/;
-	$thisline =~ s/will be used.$/will be used.\r/;
-	$thisline =~ s/will be upgraded:/will be upgraded:$blue/;
-	$thisline =~ s/^E:/$red\0E:/;
-	$thisline =~ s/Suggested packages:/Suggested packages:$yellow$1/;
-	$thisline =~ s/($bytes)/$green$1$default/g;
-	$thisline =~ s/no longer required:/no longer required:$yellow/;
-	$thisline =~ s/apt-get autoremove/$cyan$1apt-get autoremove$default/;
+	s/  \+/ /g; # Remove multiple spaces
+	s/REMOVED:$/REMOVED:$red/;
+	s/installed:$/installed:$blue/;
+	s/^Removing ($pac)/Removing $red$1$default/;
+	s/^Unpacking ($pac)/Unpacking $blue$1$default/;
+	s/^Setting up ($pac)/Setting up $blue$1$default/;
+	s/($pac) is already/$blue$1$default is already/;
+	s/triggers for ($pac) /triggers for $blue$1 $default/;
+	s/Package '($pac)'/Package '$red$1$default'/;
+	s/unselected package ($pac)/unselected package $blue$1$default/;
+	s/\/s\)$/\/s\)\r/;
+	s/not upgraded.$/not upgraded.\r/;
+	s/of archives.$/of archives.\r/;
+	s/will be used.$/will be used.\r/;
+	s/will be upgraded:/will be upgraded:$blue/;
+	s/^E:/$red\0E:/;
+	s/Suggested packages:/Suggested packages:$yellow$1/;
+	s/($bytes)/$green$1$default/g;
+	s/no longer required:/no longer required:$yellow/;
+	s/apt-get autoremove/$cyan$1apt-get autoremove$default/;
 
-	if( $thisline !~ /^\s+/ ){
-		print $norm, $default;
-	}
-	print $thisline;
+	if( $_ !~ /^\s+/ ){print $norm, $default}
+	print $_;
 }
 
 print $norm;
