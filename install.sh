@@ -1,9 +1,26 @@
 #!/bin/sh
-sudo ln -s /home/$USER/colorapt/capt-get /usr/local/sbin/apt-get
-sudo ln -s /home/$USER/colorapt/capt-search /usr/local/sbin/apt-search
-mkdir ~/.bash_completion.d
-cd bash-completion
-cp * ~/.bash_completion.d/
+
+if [ ! -f "/usr/local/sbin/capt-get" ]; then
+	sudo ln -s ~/colorapt/capt-get /usr/local/sbin/capt-get
+fi
+
+if [ ! -f "/usr/local/sbin/capt-search" ]; then
+	sudo ln -s ~/colorapt/capt-search /usr/local/sbin/capt-search
+fi
+
+d=~/.bash_completion.d 
+if [ ! -d "$d" ]; then
+	mkdir $d
+fi
+
+cd ~/.bash_completion.d/
+cp /usr/share/bash-completion/completions/apt-* .
+sed -i 's/_apt/_capt/g' *
+sed -i 's/complete\(.*\) apt-/complete\1 capt-/g' *
+
+mv apt-build capt-build
+mv apt-cache capt-cache
+mv apt-get   capt-get
 
 cat << EOF >> ~/.bashrc
 # tab completion for colorapt
